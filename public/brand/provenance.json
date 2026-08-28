@@ -1,0 +1,23 @@
+{
+  "globantWordmark": {
+    "assetUrl": "https://stayrelevant.globant.com/wp-content/uploads/2022/03/logo-globant.svg",
+    "sourcePage": "https://www.globant.com/",
+    "kind": "official-mark",
+    "status": "verified-official-remote"
+  },
+  "spacexaiMark": {
+    "path": "public/brand/spacexai.svg",
+    "kind": "official-mark",
+    "required": true
+  },
+  "watercolorArtwork": {
+    "paths": [
+      "public/brand/globant-watercolor-hero.jpg",
+      "public/brand/globant-steering.jpg",
+      "public/brand/globant-handoff.jpg",
+      "public/brand/globant-onboarding.jpg"
+    ],
+    "kind": "original-artwork",
+    "required": true
+  }
+}

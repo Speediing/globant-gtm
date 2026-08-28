@@ -1,17 +1,9 @@
-export type ClipId =
-  | "01-morning-inbox"
-  | "02-prospecting-pg"
-  | "03-slides-granola"
-  | "04-engineer-bugbot"
-  | "05-forecast-sfdc"
-  | "06-customer-expert"
-  | "07-customer-exec-brief"
-  | "08-chief-groupchat";
+export type ClipId = never;
 
 export type JobId =
-  | "standardize-room"
-  | "legal-redlines"
-  | "attach-engine";
+  | "steering-brief"
+  | "workshop-handoff"
+  | "pod-onboarding";
 
 export type ParticipantRole = "you" | "bot";
 
@@ -54,13 +46,6 @@ export type StoryVisual =
       people: { initials: string; name: string }[];
     }
   | {
-      kind: "live-transcript";
-      timestamp: string;
-      speaker: string;
-      quote: string;
-      signals: string[];
-    }
-  | {
       kind: "deck-update";
       eyebrow: string;
       headline: string;
@@ -68,20 +53,8 @@ export type StoryVisual =
       status: string;
     }
   | {
-      kind: "procurement-email";
-      sender: string;
-      subject: string;
-      questions: number;
-    }
-  | {
       kind: "answers-found";
       sources: { name: string; answer: string }[];
-      status: string;
-    }
-  | {
-      kind: "reply-ready";
-      to: string;
-      subject: string;
       status: string;
     }
   | {
@@ -89,16 +62,6 @@ export type StoryVisual =
       account: string;
       sources: string[];
       signal: string;
-    }
-  | {
-      kind: "three-why";
-      items: { label: string; answer: string }[];
-    }
-  | {
-      kind: "outreach-ready";
-      person: string;
-      channels: string[];
-      status: string;
     };
 
 export type StoryBeat = {
@@ -254,7 +217,6 @@ export type Quote = {
   name: string;
   handle: string;
   date: string;
-  avatar: string;
   quote: string;
   source: string;
 };

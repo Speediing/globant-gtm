@@ -8,13 +8,16 @@ export function SiteNav() {
       </a>
       <nav className="header-actions" aria-label="On this page">
         <a className="text-button" href="#jobs">
-          Use cases
+          Scenes
+        </a>
+        <a className="text-button" href="#roster">
+          Agent fleet
         </a>
         <a className="text-button" href="#compare">
-          Grok Bot comparison
+          Compare
         </a>
         <a className="text-button" href="#testimonials">
-          Testimonials
+          Proof
         </a>
       </nav>
     </header>

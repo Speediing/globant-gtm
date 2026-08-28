@@ -2,30 +2,39 @@ const TOOLS = ["Grok Bot", "Claude Cowork", "ChatGPT", "Perplexity"] as const;
 
 const ROWS: { label: string; values: string[] }[] = [
   {
-    label: "What it is",
+    label: "Working environment",
     values: [
-      "An always-on agent team with its own computers, working across your tools",
-      "General computer agent",
-      "General AI assistant",
-      "AI research engine",
+      "Each bot has a persistent computer",
+      "A managed computer session",
+      "A chat with connected tools and task modes",
+      "A research and answer interface",
     ],
   },
   {
-    label: "What starts it",
+    label: "Approved tools",
     values: [
-      "Always on — it starts without a prompt",
-      "You assign a task",
-      "You start a chat or task",
-      "You ask a question",
+      "Works across the tools you approve",
+      "Works in the tools available to the assigned task",
+      "Uses the connected tools available to the task",
+      "Searches connected and public sources",
     ],
   },
   {
-    label: "What you get",
+    label: "How work starts",
     values: [
-      "A team of agents working for you 24/7",
-      "A completed task or artifact",
+      "A message, reusable routine, or supported event",
+      "An assigned task",
+      "A prompt or task",
+      "A research question",
+    ],
+  },
+  {
+    label: "Review",
+    values: [
+      "Reviewable output and visible computer activity",
+      "A result for review",
       "An answer, analysis, or draft",
-      "A sourced research answer",
+      "A sourced answer",
     ],
   },
 ];
@@ -35,8 +44,8 @@ export function CompareTable() {
     <section id="compare" className="compare">
       <h2>Grok Bot comparison</h2>
       <p className="section-lede">
-        A full team of agents runs in the cloud for you 24/7, starting work
-        without waiting for a prompt.
+        Grok Bot combines persistent computers, approved tools, reusable
+        triggers, and reviewable output.
       </p>
       <div className="compare-wrap">
         <table className="compare-table">

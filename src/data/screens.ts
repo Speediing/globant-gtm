@@ -1,19 +1,6 @@
-import type { ClipId, JobId } from "./types";
+import type { JobId } from "./types";
 
-export type SiteKind =
-  | "granola"
-  | "figma"
-  | "gong"
-  | "sfdc-account"
-  | "sfdc-opp"
-  | "sheets"
-  | "gmail"
-  | "slack"
-  | "gdoc"
-  | "linkedin"
-  | "research"
-  | "page"
-  | "clip";
+export type SiteKind = "calendar" | "notes" | "tracker" | "workspace";
 
 export type ChromeTab = {
   id: string;
@@ -27,211 +14,157 @@ export type ComputerBeat = {
   path?: string;
   title: string;
   site: SiteKind;
-  clip?: ClipId;
   tabs: ChromeTab[];
 };
 
-const granola = { id: "granola", host: "granola.app", label: "Granola" };
-const figma = { id: "figma", host: "figma.com", label: "Figma" };
-const gmail = { id: "gmail", host: "mail.google.com", label: "Gmail" };
-const gong = { id: "gong", host: "app.gong.io", label: "Gong" };
-const sfdc = {
-  id: "sfdc",
-  host: "datadog.lightning.force.com",
-  label: "Salesforce",
+const calendar = {
+  id: "calendar",
+  host: "calendar.google.com",
+  label: "Calendar",
 };
-const sheets = {
-  id: "sheets",
+const notes = {
+  id: "notes",
   host: "docs.google.com",
-  label: "Sheets",
+  label: "Approved notes",
 };
-const slack = { id: "slack", host: "app.slack.com", label: "Slack" };
-const gdoc = { id: "gdoc", host: "docs.google.com", label: "Docs" };
-const linkedin = {
-  id: "linkedin",
-  host: "www.linkedin.com",
-  label: "LinkedIn",
+const tracker = {
+  id: "tracker",
+  host: "docs.google.com",
+  label: "Tracker",
 };
-const web = { id: "web", host: "acme.com", label: "Acme" };
+const workspace = {
+  id: "workspace",
+  host: "app.slack.com",
+  label: "Workspace",
+};
 
 export const SCREENS: Record<JobId, Record<string, ComputerBeat>> = {
-  "standardize-room": {
+  "steering-brief": {
     m1: {
-      pill: "Opening Granola",
-      host: "granola.app",
-      path: "/notes/acme-datadog",
-      title: "Acme <> Datadog",
-      site: "granola",
-      tabs: [granola, figma, gmail],
+      pill: "Checking the approved calendar",
+      host: "calendar.google.com",
+      path: "/calendar/u/0/r/day",
+      title: "AI Pod steering call",
+      site: "calendar",
+      tabs: [calendar, notes, tracker, workspace],
     },
     m2: {
-      pill: "In Granola",
-      host: "granola.app",
-      path: "/notes/acme-datadog",
-      title: "Acme <> Datadog",
-      site: "granola",
-      tabs: [granola, figma, gmail],
+      pill: "Gathering approved context",
+      host: "docs.google.com",
+      path: "/document/d/approved-steering-context",
+      title: "Approved steering context",
+      site: "notes",
+      tabs: [calendar, notes, tracker, workspace],
     },
     m3: {
-      pill: "Pulling Granola, still on the call",
-      host: "granola.app",
-      path: "/notes/acme-datadog",
-      title: "Acme <> Datadog",
-      site: "clip",
-      clip: "03-slides-granola",
-      tabs: [granola, figma, gmail],
+      pill: "Organizing the brief",
+      host: "docs.google.com",
+      path: "/document/d/steering-brief-draft",
+      title: "AI Pod steering brief",
+      site: "notes",
+      tabs: [calendar, notes, tracker, workspace],
     },
     m4: {
-      pill: "Writing their discovery into the deck",
-      host: "figma.com",
-      path: "/file/acme-next-meeting",
-      title: "Acme next meeting",
-      site: "figma",
-      tabs: [granola, figma, gmail],
+      pill: "Finishing the steering brief",
+      host: "docs.google.com",
+      path: "/document/d/steering-brief",
+      title: "AI Pod steering brief",
+      site: "notes",
+      tabs: [calendar, notes, tracker, workspace],
     },
     m5: {
-      pill: "Drafting the one-pager",
-      host: "figma.com",
-      path: "/file/acme-leave-behind",
-      title: "Acme one-pager",
-      site: "figma",
-      tabs: [granola, figma, gmail],
-    },
-    m6: {
-      pill: "Building the inside note",
-      host: "figma.com",
-      path: "/file/acme-champion-packet",
-      title: "Inside note",
-      site: "figma",
-      tabs: [granola, figma, gmail],
-    },
-    m7: {
-      pill: "Drafting in Gmail, not sent",
-      host: "mail.google.com",
-      path: "/mail/u/0/#drafts",
-      title: "Drafts",
-      site: "gmail",
-      tabs: [granola, figma, gmail],
-    },
-    m8: {
-      pill: "Drafting in Gmail, not sent",
-      host: "mail.google.com",
-      path: "/mail/u/0/#drafts",
-      title: "Drafts",
-      site: "gmail",
-      tabs: [granola, figma, gmail],
+      pill: "Waiting for review",
+      host: "docs.google.com",
+      path: "/document/d/steering-brief",
+      title: "AI Pod steering brief",
+      site: "notes",
+      tabs: [calendar, notes, tracker, workspace],
     },
   },
-  "legal-redlines": {
+  "workshop-handoff": {
     m1: {
-      pill: "Opening Gmail",
-      host: "mail.google.com",
-      path: "/mail/u/0/#inbox",
-      title: "Inbox",
-      site: "gmail",
-      tabs: [gmail, gdoc],
+      pill: "Opening approved workshop notes",
+      host: "docs.google.com",
+      path: "/document/d/approved-workshop-notes",
+      title: "Approved workshop notes",
+      site: "notes",
+      tabs: [notes, tracker, workspace],
     },
     m2: {
-      pill: "Drafting so you do not chase billing",
-      host: "mail.google.com",
-      path: "/mail/u/0/#inbox",
-      title: "Inbox",
-      site: "clip",
-      clip: "01-morning-inbox",
-      tabs: [gmail, gdoc],
+      pill: "Extracting actions and owners",
+      host: "docs.google.com",
+      path: "/document/d/approved-workshop-notes",
+      title: "Approved workshop notes",
+      site: "notes",
+      tabs: [notes, tracker, workspace],
     },
     m3: {
-      pill: "Drafting the morning reply, not sent",
+      pill: "Checking the delivery tracker",
       host: "docs.google.com",
-      path: "/document/d/acme-invoices",
-      title: "Acme invoices INV-0080 · INV-0081",
-      site: "gdoc",
-      tabs: [gmail, gdoc],
+      path: "/spreadsheets/d/pod-delivery-tracker",
+      title: "Pod delivery tracker",
+      site: "tracker",
+      tabs: [notes, tracker, workspace],
     },
     m4: {
-      pill: "Drafting in Gmail, not sent",
-      host: "mail.google.com",
-      path: "/mail/u/0/#drafts",
-      title: "Drafts",
-      site: "gmail",
-      tabs: [gmail, gdoc],
+      pill: "Finishing the workshop handoff",
+      host: "docs.google.com",
+      path: "/spreadsheets/d/workshop-handoff",
+      title: "Workshop handoff",
+      site: "tracker",
+      tabs: [notes, tracker, workspace],
     },
     m5: {
-      pill: "Drafting in Gmail, not sent",
-      host: "mail.google.com",
-      path: "/mail/u/0/#drafts",
-      title: "Drafts",
-      site: "gmail",
-      tabs: [gmail, gdoc],
+      pill: "Waiting for review",
+      host: "docs.google.com",
+      path: "/spreadsheets/d/workshop-handoff",
+      title: "Workshop handoff",
+      site: "tracker",
+      tabs: [notes, tracker, workspace],
     },
   },
-  "attach-engine": {
+  "pod-onboarding": {
     m1: {
-      pill: "Researching the account",
-      host: "acme.com",
-      path: "/careers/staff-sre",
-      title: "Staff SRE · Observability",
-      site: "research",
-      tabs: [web, gdoc, linkedin, gmail],
+      pill: "Checking approved workspace access",
+      host: "app.slack.com",
+      path: "/client/pod-workspace",
+      title: "Approved pod workspace",
+      site: "workspace",
+      tabs: [workspace, notes, tracker],
     },
     m2: {
-      pill: "Pulling public evidence of the pain",
-      host: "acme.com",
-      path: "/status",
-      title: "Acme status",
-      site: "clip",
-      clip: "02-prospecting-pg",
-      tabs: [web, gdoc, linkedin, gmail],
+      pill: "Finding current approved documents",
+      host: "docs.google.com",
+      path: "/document/d/pod-charter",
+      title: "Approved pod charter",
+      site: "notes",
+      tabs: [workspace, notes, tracker],
     },
     m3: {
-      pill: "Writing the 3-why hypothesis",
-      host: "docs.google.com",
-      path: "/document/d/acme-3-why",
-      title: "Acme 3-why",
-      site: "gdoc",
-      tabs: [web, gdoc, linkedin, gmail],
+      pill: "Ordering the setup context",
+      host: "app.slack.com",
+      path: "/client/pod-workspace/onboarding",
+      title: "Pod onboarding",
+      site: "workspace",
+      tabs: [workspace, notes, tracker],
     },
     m4: {
-      pill: "Naming who would care",
-      host: "docs.google.com",
-      path: "/document/d/acme-3-why",
-      title: "Acme 3-why",
-      site: "gdoc",
-      tabs: [web, gdoc, linkedin, gmail],
+      pill: "Finishing the onboarding brief",
+      host: "app.slack.com",
+      path: "/client/pod-workspace/onboarding",
+      title: "Pod onboarding brief",
+      site: "workspace",
+      tabs: [workspace, notes, tracker],
     },
     m5: {
-      pill: "Drafting LinkedIn, not sent",
-      host: "www.linkedin.com",
-      path: "/messaging/compose",
-      title: "Message",
-      site: "linkedin",
-      tabs: [web, gdoc, linkedin, gmail],
+      pill: "Waiting for review",
+      host: "app.slack.com",
+      path: "/client/pod-workspace/onboarding",
+      title: "Pod onboarding brief",
+      site: "workspace",
+      tabs: [workspace, notes, tracker],
     },
-    m6: {
-      pill: "Drafting in Gmail, not sent",
-      host: "mail.google.com",
-      path: "/mail/u/0/#drafts",
-      title: "Drafts",
-      site: "gmail",
-      tabs: [web, gdoc, linkedin, gmail],
-    },
-    m7: {
-      pill: "Building a page for this account",
-      host: "acme.datadoghq.dev",
-      path: "/acme-sev2",
-      title: "For Acme platform",
-      site: "page",
-      tabs: [web, gdoc, linkedin, gmail],
-    },
-    m8: {
-      pill: "Drafts parked. Nothing sent",
-      host: "mail.google.com",
-      path: "/mail/u/0/#drafts",
-      title: "Drafts",
-      site: "gmail",
-      tabs: [web, gdoc, linkedin, gmail],
-    },
-  }
+  },
 };
 
 export function beatFor(

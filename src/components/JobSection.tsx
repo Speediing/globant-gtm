@@ -4,9 +4,9 @@ import { ChapterPayoff } from "./ChapterPayoff";
 import { JobMore } from "./JobMore";
 
 const JOB_ART: Record<JobId, string> = {
-  "standardize-room": "/brand/watercolor-room.png",
-  "legal-redlines": "/brand/watercolor-deal.png",
-  "attach-engine": "/brand/watercolor-attach.png",
+  "steering-brief": "/brand/globant-steering.jpg",
+  "workshop-handoff": "/brand/globant-handoff.jpg",
+  "pod-onboarding": "/brand/globant-onboarding.jpg",
 };
 
 export function JobSection({ job }: { job: CroJob }) {
@@ -22,7 +22,6 @@ export function JobSection({ job }: { job: CroJob }) {
       </p>
       <div>
         <div className="job-art" aria-hidden>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={JOB_ART[job.id]} alt="" />
         </div>
         <div className="background-agent">

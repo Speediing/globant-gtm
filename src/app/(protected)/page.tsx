@@ -1,4 +1,5 @@
 import { CompareTable } from "@/components/CompareTable";
+import { HeroDemo } from "@/components/HeroDemo";
 import { HeroTelemetry } from "@/components/HeroTelemetry";
 import { JobSection } from "@/components/JobSection";
 import { QuoteWall } from "@/components/QuoteWall";
@@ -21,16 +22,7 @@ export default function HomePage() {
       <div className="report">
         <div className="report-hero">
           <HeroTelemetry />
-          <section className="hero">
-            <div>
-              <p className="eyebrow">Grok Bot for Globant</p>
-              <h1>The agents that keep every pod moving.</h1>
-              <p className="hero-intro">
-                A managed fleet carries approved context, actions, and
-                approvals across an AI Pod. A person stays in control.
-              </p>
-            </div>
-          </section>
+          <HeroDemo />
 
           <section className="usecase-framing">
             <p className="eyebrow">Three scenes from one working day</p>

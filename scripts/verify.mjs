@@ -31,6 +31,16 @@ const requiredArtifacts = [
   "Workshop handoff",
   "Pod onboarding brief",
 ];
+const requiredHeroJobIds = [
+  "steering-brief",
+  "workshop-handoff",
+  "pod-onboarding",
+  "decision-log",
+  "action-tracker",
+  "source-check",
+  "weekly-update",
+  "review-queue",
+];
 const artwork = [
   "public/brand/globant-watercolor-hero.jpg",
   "public/brand/globant-steering.jpg",
@@ -126,6 +136,49 @@ const page = readFileSync(
 );
 if (!page.includes("Biz Eshetu") || !page.includes("biz.eshetu@cursor.com")) {
   errors.push("The footer must contain Biz Eshetu and the correct email.");
+}
+if (!page.includes("<HeroDemo />")) {
+  errors.push("The protected page must render HeroDemo as the hero.");
+}
+
+const heroComponentPath = join(root, "src/components/HeroDemo.tsx");
+const heroJobsPath = join(root, "src/data/hero-jobs.ts");
+if (!existsSync(heroComponentPath) || !existsSync(heroJobsPath)) {
+  errors.push("HeroDemo and its hero job data must remain in the src/ tree.");
+} else {
+  const heroComponent = readFileSync(heroComponentPath, "utf8");
+  const heroJobs = readFileSync(heroJobsPath, "utf8");
+  for (const className of [
+    "hero-copy",
+    "hero-phone-jobs",
+    "hero-bot-demo",
+    "hero-phone",
+    "notch",
+    "header",
+    "thread",
+    "composer",
+  ]) {
+    if (!heroComponent.includes(className)) {
+      errors.push(`HeroDemo is missing the ${className} class.`);
+    }
+  }
+  for (const id of requiredHeroJobIds) {
+    if (!heroJobs.includes(`id: "${id}"`)) {
+      errors.push(`HeroDemo is missing the ${id} job.`);
+    }
+  }
+  if ([...heroJobs.matchAll(/\bid:\s*"[^"]+"/g)].length !== 8) {
+    errors.push("HeroDemo must keep exactly eight jobs.");
+  }
+  for (const selector of [
+    ".hero-phone",
+    ".hero-bot-demo",
+    ".hero-phone-jobs",
+  ]) {
+    if (!css.includes(selector)) {
+      errors.push(`The hero stylesheet is missing ${selector}.`);
+    }
+  }
 }
 
 const auth = readFileSync(join(root, "src/lib/auth.ts"), "utf8");
